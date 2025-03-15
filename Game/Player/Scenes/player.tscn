@@ -1,22 +1,90 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgxqnfvlavcjr"]
+[gd_scene load_steps=9 format=3 uid="uid://dgxqnfvlavcjr"]
 
 [ext_resource type="Script" uid="uid://bqlneojn8sre2" path="res://Game/Player/player_controller.gd" id="1_mtgcg"]
 [ext_resource type="Script" uid="uid://dhroe2unon03c" path="res://Game/Player/PlayerStaterMachine/utility/player_state_machine.gd" id="2_qrobf"]
+[ext_resource type="PackedScene" uid="uid://rgaepi8i0rgu" path="res://Game/Lib/WeaponManger/lib/scenes/weapon_manager.tscn" id="2_t1oj7"]
+[ext_resource type="Script" uid="uid://cg1eblpxhj4se" path="res://Game/Player/PlayerStaterMachine/states/airborne_player_state.gd" id="4_hplq1"]
+[ext_resource type="Script" uid="uid://dwox2d2w3w1fu" path="res://Game/Player/PlayerStaterMachine/states/grounded_player_state.gd" id="4_t1oj7"]
+[ext_resource type="Script" uid="uid://cutjsttcrwyw5" path="res://Game/Player/PlayerStaterMachine/states/preparation_player_state.gd" id="6_tp56d"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mtgcg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t1oj7"]
 
 [node name="Player" type="CharacterBody3D"]
+floor_constant_speed = true
+platform_on_leave = 2
 script = ExtResource("1_mtgcg")
 
+[node name="WeaponManager" parent="." node_paths=PackedStringArray("player", "projectile_raycast", "bullet_raycast", "debug_raycast", "view_model_container", "cam_3d") instance=ExtResource("2_t1oj7")]
+player = NodePath("..")
+allow_shoot = false
+projectile_raycast = NodePath("../HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D/ProjectileRayCast")
+bullet_raycast = NodePath("../HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D/BulletRayCast")
+debug_raycast = NodePath("../HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D/DebugCast")
+view_model_container = NodePath("../HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D/Kickback/ViewModel")
+cam_3d = NodePath("../HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D")
+bob_speed = 0.0
+hbob_amount = 0.0
+vbob_amount = 0.0
+
 [node name="WorldModel" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_mtgcg")
+
+[node name="HeadOriginalPosition" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Head" type="Node3D" parent="HeadOriginalPosition"]
+unique_name_in_owner = true
+
+[node name="CameraSmooth" type="Node3D" parent="HeadOriginalPosition/Head"]
+unique_name_in_owner = true
+
+[node name="CameraRecoil" type="Node3D" parent="HeadOriginalPosition/Head/CameraSmooth"]
+unique_name_in_owner = true
+
+[node name="PlayerCamera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+fov = 105.0
+
+[node name="BulletRayCast" type="RayCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D"]
+target_position = Vector3(0, -1, -999)
+debug_shape_custom_color = Color(1, 0, 1, 1)
+debug_shape_thickness = 5
+
+[node name="ProjectileRayCast" type="RayCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D"]
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+
+[node name="DebugCast" type="RayCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D"]
+unique_name_in_owner = true
+
+[node name="Kickback" type="Node3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D"]
+unique_name_in_owner = true
+
+[node name="ViewModel" type="Node3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D/Kickback"]
+unique_name_in_owner = true
 
 [node name="CharacterCollision" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_t1oj7")
 
-[node name="PlayerStateMachine" type="Node" parent="."]
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 unique_name_in_owner = true
 script = ExtResource("2_qrobf")
+CURRENT_STATE = NodePath("GroundedPlayerState")
 
-[node name="PrepPhase" type="Node" parent="PlayerStateMachine"]
+[node name="AirbornePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_hplq1")
+
+[node name="GroundedPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_t1oj7")
+
+[node name="PreparationPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_tp56d")

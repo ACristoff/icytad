@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponResource" load_steps=2 format=3 uid="uid://crxe0xd6nbtiq"]
+
+[ext_resource type="Script" uid="uid://b451hlkqltvp4" path="res://Game/Lib/Resource/projectile_weapon_resource.gd" id="1_2g3bl"]
+
+[resource]
+script = ExtResource("1_2g3bl")
+projectile_relative_velocity = 15.0
+projectile_y_velocity = 0.0
+player_velocity_influence = 0.75
+consider_player_velocity = false
+projectile_relative_spawn_pos = Vector3(0, 0, -2)
+projectile_relative_spawn_rotation = Vector3(0, 0, 0)
+name = ""
+view_model_pos = Vector3(0, 0, 0)
+view_model_rot = Vector3(0, 0, 0)
+view_model_scale = Vector3(1, 1, 1)
+world_model_pos = Vector3(0, 0, 0)
+world_model_rot = Vector3(0, 0, 0)
+world_model_scale = Vector3(1, 1, 1)
+view_idle_anim = ""
+view_equip_anim = ""
+view_reload_anim = ""
+view_primary_shoot_anim = ""
+sway_min = Vector2(-10, -10)
+sway_max = Vector2(10, 10)
+sway_speed_position = 10.0
+sway_speed_rotation = 10.0
+sway_amount_position = 0.1
+sway_amount_rotation = 30.0
+idle_sway_speed = 1.2
+idle_sway_adjustment = 10.0
+idle_sway_rotation_strength = 300.0
+idle_random_sway_amount = 5.0
+tracer_every_n_shots = 2
+tracer_effect = ""
+damage_per_pellet = 10
+pellet_count = 0
+primary_max_fire_rate_ms = 50
+current_ammo = 999
+magazine_capacity = 999
+weapon_recoil = Vector3(0, 0, 0)
+weapon_recoil_range = Vector3(0, 0, 0)
+weapon_recoil_dampener = 0.0002
+weapon_spread_range = Vector2(0, 0)
+weapon_recoil_deviation_dampener = 0.01
+weapon_spread_dampener = 0.01
+pellet_spread_radius = 0.1
+metadata/_custom_type_script = "uid://b451hlkqltvp4"
