@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bveethj0km71s"]
+[gd_scene load_steps=13 format=3 uid="uid://bveethj0km71s"]
 
 [ext_resource type="PackedScene" uid="uid://dgxqnfvlavcjr" path="res://Game/Player/Scenes/player.tscn" id="1_37kl0"]
 
@@ -18,7 +18,26 @@ volumetric_fog_density = 0.0
 albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kl0"]
+resource_local_to_scene = true
 albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uh7m"]
+albedo_color = Color(1, 0.125761, 0.245272, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uqi0"]
+albedo_color = Color(1, 0.125761, 0.245272, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppyta"]
+albedo_color = Color(1, 0.125761, 0.245272, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykrsh"]
+albedo_color = Color(1, 0.125761, 0.245272, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g14j6"]
+albedo_color = Color(1, 0.125761, 0.245272, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbegm"]
+albedo_color = Color(1, 0.125761, 0.245272, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -54,5 +73,77 @@ material = SubResource("StandardMaterial3D_37kl0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.59492, 5, 12.3511)
 height = 10.0
 material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59492, 1.47656, 6.3511)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59492, 1.47656, 3.3511)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59492, 1.47656, 0.3511)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59492, 1.47656, -2.6489)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59492, 1.47656, -5.6489)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59492, 1.47656, -8.6489)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_37kl0")
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40508, 1.47656, 6.3511)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_8uh7m")
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40508, 1.47656, 3.3511)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_6uqi0")
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40508, 1.47656, 0.3511)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_ppyta")
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40508, 1.47656, -2.6489)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_ykrsh")
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40508, 1.47656, -5.6489)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_g14j6")
+
+[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40508, 1.47656, -8.6489)
+radius = 0.132324
+height = 2.95313
+material = SubResource("StandardMaterial3D_vbegm")
 
 [node name="Player" parent="." instance=ExtResource("1_37kl0")]
