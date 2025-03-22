@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://bst2vm2xe6xi4"]
+
+[ext_resource type="Script" uid="uid://dwdkmjoxa6q5l" path="res://Game/UI/Scenes/PrepUI/scripts/card_ui.gd" id="1_4mrkq"]
+[ext_resource type="Shader" uid="uid://boicexik1vxl7" path="res://Game/UI/Scenes/PrepUI/shaders/background_blur.gdshader" id="1_s4n0j"]
+[ext_resource type="Texture2D" uid="uid://cthtrdp6iipkd" path="res://1740861526315430.png" id="3_jdep0"]
+[ext_resource type="Texture2D" uid="uid://tnpwb27f8na3" path="res://1739777577309497.png" id="4_jdep0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_goxtj"]
+shader = ExtResource("1_s4n0j")
+shader_parameter/lod = 0.0
+
+[node name="CardUI" type="CanvasLayer"]
+script = ExtResource("1_4mrkq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BlurBackground" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_goxtj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 398.0
+offset_right = 292.0
+offset_bottom = 598.0
+texture = ExtResource("3_jdep0")
+expand_mode = 3
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureRect"]
+visible = false
+rect = Rect2(0, 0, 200, 200)
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 390.0
+offset_right = 1039.0
+offset_bottom = 590.0
+texture = ExtResource("4_jdep0")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Control/TextureRect2"]
+visible = false
+rect = Rect2(0, 0, 200, 200)
+enable_node_path = NodePath("../../..")
+
+[node name="Marker2D" type="Marker2D" parent="Control"]
+position = Vector2(600, 142)
+
+[node name="Marker2D2" type="Marker2D" parent="Control"]
+position = Vector2(336, 142)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
