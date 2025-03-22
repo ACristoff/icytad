@@ -19,7 +19,7 @@ void fragment()
     // SCREEN_UV: Built-in variable representing the current pixel's position on screen (0-1 range)
     // lod: The third parameter controls which mipmap level to sample from (higher = blurrier)
     vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
-    
+
     // Sets the output color of this pixel to the sampled color
     // COLOR is a special output variable that determines the final pixel color
     COLOR = color;

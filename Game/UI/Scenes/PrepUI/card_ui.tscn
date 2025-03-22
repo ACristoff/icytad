@@ -48,7 +48,6 @@ texture = ExtResource("3_jdep0")
 expand_mode = 3
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureRect"]
-visible = false
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
@@ -59,10 +58,7 @@ offset_right = 1039.0
 offset_bottom = 590.0
 texture = ExtResource("4_jdep0")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Control/TextureRect2"]
-visible = false
-rect = Rect2(0, 0, 200, 200)
-enable_node_path = NodePath("../../..")
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureRect2"]
 
 [node name="Marker2D" type="Marker2D" parent="Control"]
 position = Vector2(600, 142)
