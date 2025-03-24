@@ -229,6 +229,7 @@ offset_bottom = 1200.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("3_jdep0")
+texture_hover = ExtResource("4_jdep0")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton3"]
 rect = Rect2(0, 0, 200, 200)
@@ -292,5 +293,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_20dqr")
 }
 
+[connection signal="mouse_entered" from="Control/TextureButton3" to="." method="_on_texture_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="Control/TextureButton3" to="." method="_on_texture_button_3_mouse_exited"]
 [connection signal="screen_entered" from="Control/TextureButton3/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="animation_finished" from="CardUIAnimationPlayer" to="." method="_on_card_ui_animation_player_animation_finished"]

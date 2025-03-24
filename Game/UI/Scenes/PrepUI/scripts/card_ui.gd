@@ -1,10 +1,13 @@
 extends CanvasLayer
+#@export var resourcetype : WeaponResource
 ## Maybe make this an autoload or something?
 ## Player passes in the amount of cards they have
 ## Steps: Fade in blur + background, place cards, click to highlight cards
 
 ## move cards into place
 ## Bottom left corner, display cards in play
+
+## Set up a script to loop through the tree here and attach a signal listener to each
 func _ready() -> void:
 	%CardUIAnimationPlayer.play(&"fade_in")
 
@@ -55,8 +58,11 @@ func _exist_tween() -> void:
 	tween.tween_property($Control/TextureButton4, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 	tween.tween_property($Control/TextureButton5, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 
+
+#region Helper Functions
 func _center_element(target_position : Vector2, element_size : Vector2) -> Vector2:
 	return target_position + Vector2.UP * (element_size.y/2) + Vector2.LEFT * element_size.x/2
+#endregion
 
 
 #region Signal Listeners
@@ -71,5 +77,17 @@ func _on_card_ui_animation_player_animation_finished(anim_name: StringName) -> v
 	# Will move this to state machine later
 	if anim_name == &"fade_out":
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+## We need to pass in the hovered node into this
+func _on_texture_button_3_mouse_entered() -> void:
+	print("Hover")
+	var tween : Tween = create_tween()
+	tween.tween_property($Control/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton3.size) + Vector2.UP * 20, 0.1)
+
+func _on_texture_button_3_mouse_exited() -> void:
+	print("No hover")
+	var tween : Tween = create_tween()
+	tween.tween_property($Control/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton3.size), 0.1)
 
 #endregion
