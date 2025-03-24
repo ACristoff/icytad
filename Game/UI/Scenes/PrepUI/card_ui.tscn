@@ -1,19 +1,185 @@
-[gd_scene load_steps=6 format=3 uid="uid://bst2vm2xe6xi4"]
+[gd_scene load_steps=12 format=3 uid="uid://bst2vm2xe6xi4"]
 
 [ext_resource type="Script" uid="uid://dwdkmjoxa6q5l" path="res://Game/UI/Scenes/PrepUI/scripts/card_ui.gd" id="1_4mrkq"]
 [ext_resource type="Shader" uid="uid://boicexik1vxl7" path="res://Game/UI/Scenes/PrepUI/shaders/background_blur.gdshader" id="1_s4n0j"]
 [ext_resource type="Texture2D" uid="uid://cthtrdp6iipkd" path="res://1740861526315430.png" id="3_jdep0"]
 [ext_resource type="Texture2D" uid="uid://tnpwb27f8na3" path="res://1739777577309497.png" id="4_jdep0"]
+[ext_resource type="Texture2D" uid="uid://cm6ftwwr2tac0" path="res://1740458824217374.png" id="6_sfo5v"]
+[ext_resource type="Texture2D" uid="uid://bcvsjvgm2kjii" path="res://tiny_nia.png" id="7_20dqr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_goxtj"]
 shader = ExtResource("1_s4n0j")
 shader_parameter/lod = 0.0
 
+[sub_resource type="Animation" id="Animation_sfo5v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BackgroundColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BlurBackground:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cvdjr"]
+resource_name = "fade_in"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BackgroundColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.686275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BlurBackground:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_enter_tween"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_20dqr"]
+resource_name = "fade_out"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BackgroundColor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.686275), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BlurBackground:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.225),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_enter_tween"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_20dqr"]
+_data = {
+&"RESET": SubResource("Animation_sfo5v"),
+&"fade_in": SubResource("Animation_cvdjr"),
+&"fade_out": SubResource("Animation_20dqr")
+}
+
 [node name="CardUI" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_4mrkq")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlurBackground" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_goxtj")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,41 +195,76 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="BlurBackground" type="ColorRect" parent="Control"]
-material = SubResource("ShaderMaterial_goxtj")
+[node name="TextureButton" type="TextureButton" parent="Control"]
+offset_left = 472.0
+offset_top = 1000.0
+offset_right = 672.0
+offset_bottom = 1200.0
+toggle_mode = true
+texture_normal = ExtResource("7_20dqr")
+texture_pressed = ExtResource("6_sfo5v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton"]
+rect = Rect2(0, 0, 200, 200)
+
+[node name="TextureButton2" type="TextureButton" parent="Control"]
+offset_left = 472.0
+offset_top = 1000.0
+offset_right = 672.0
+offset_bottom = 1200.0
+toggle_mode = true
+texture_normal = ExtResource("7_20dqr")
+texture_pressed = ExtResource("4_jdep0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton2"]
+rect = Rect2(0, 0, 200, 200)
+
+[node name="TextureButton3" type="TextureButton" parent="Control"]
+offset_left = 472.0
+offset_top = 1000.0
+offset_right = 672.0
+offset_bottom = 1200.0
+toggle_mode = true
+texture_normal = ExtResource("7_20dqr")
+texture_pressed = ExtResource("3_jdep0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton3"]
+rect = Rect2(0, 0, 200, 200)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = 92.0
-offset_top = 398.0
-offset_right = 292.0
-offset_bottom = 598.0
-texture = ExtResource("3_jdep0")
-expand_mode = 3
+[node name="CardPositionHbox" type="HBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 210
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureRect"]
-rect = Rect2(0, 0, 200, 200)
+[node name="Position1" type="Control" parent="Control/CenterContainer/CardPositionHbox"]
+layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = 839.0
-offset_top = 390.0
-offset_right = 1039.0
-offset_bottom = 590.0
-texture = ExtResource("4_jdep0")
+[node name="Position2" type="Control" parent="Control/CenterContainer/CardPositionHbox"]
+layout_mode = 2
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureRect2"]
+[node name="Position3" type="Control" parent="Control/CenterContainer/CardPositionHbox"]
+layout_mode = 2
 
-[node name="Marker2D" type="Marker2D" parent="Control"]
-position = Vector2(600, 142)
+[node name="Position4" type="Control" parent="Control/CenterContainer/CardPositionHbox"]
+layout_mode = 2
 
-[node name="Marker2D2" type="Marker2D" parent="Control"]
-position = Vector2(336, 142)
+[node name="Position5" type="Control" parent="Control/CenterContainer/CardPositionHbox"]
+layout_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CardUIAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_20dqr")
+}
+
+[connection signal="screen_entered" from="Control/TextureButton3/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="animation_finished" from="CardUIAnimationPlayer" to="." method="_on_card_ui_animation_player_animation_finished"]

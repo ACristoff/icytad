@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgxqnfvlavcjr"]
+[gd_scene load_steps=10 format=3 uid="uid://dgxqnfvlavcjr"]
 
 [ext_resource type="Script" uid="uid://bqlneojn8sre2" path="res://Game/Player/player_controller.gd" id="1_mtgcg"]
 [ext_resource type="Script" uid="uid://dhroe2unon03c" path="res://Game/Player/PlayerStaterMachine/utility/player_state_machine.gd" id="2_qrobf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cg1eblpxhj4se" path="res://Game/Player/PlayerStaterMachine/states/airborne_player_state.gd" id="4_hplq1"]
 [ext_resource type="Script" uid="uid://dwox2d2w3w1fu" path="res://Game/Player/PlayerStaterMachine/states/grounded_player_state.gd" id="4_t1oj7"]
 [ext_resource type="Script" uid="uid://cutjsttcrwyw5" path="res://Game/Player/PlayerStaterMachine/states/preparation_player_state.gd" id="6_tp56d"]
+[ext_resource type="PackedScene" uid="uid://bst2vm2xe6xi4" path="res://Game/UI/Scenes/PrepUI/card_ui.tscn" id="7_rj56h"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mtgcg"]
 
@@ -88,3 +89,6 @@ script = ExtResource("4_t1oj7")
 
 [node name="PreparationPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_tp56d")
+
+[node name="CardUI" parent="." instance=ExtResource("7_rj56h")]
+visible = false
