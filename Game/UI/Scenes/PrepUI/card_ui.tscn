@@ -197,14 +197,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Cards" type="Node" parent="Control"]
+[node name="Cards" type="Control" parent="Control"]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="Control/Cards"]
-offset_left = 540.0
-offset_top = 1000.0
-offset_right = 740.0
-offset_bottom = 1200.0
+offset_left = 860.0
+offset_top = 4320.0
+offset_right = 1060.0
+offset_bottom = 4520.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("6_sfo5v")
@@ -213,10 +219,10 @@ texture_pressed = ExtResource("6_sfo5v")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton2" type="TextureButton" parent="Control/Cards"]
-offset_left = 540.0
-offset_top = 1000.0
-offset_right = 740.0
-offset_bottom = 1200.0
+offset_left = 860.0
+offset_top = 4320.0
+offset_right = 1060.0
+offset_bottom = 4520.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("4_jdep0")
@@ -225,10 +231,10 @@ texture_pressed = ExtResource("4_jdep0")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton3" type="TextureButton" parent="Control/Cards"]
-offset_left = 540.0
-offset_top = 1000.0
-offset_right = 740.0
-offset_bottom = 1200.0
+offset_left = 860.0
+offset_top = 4320.0
+offset_right = 1060.0
+offset_bottom = 4520.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("3_jdep0")
@@ -237,10 +243,10 @@ texture_pressed = ExtResource("3_jdep0")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton4" type="TextureButton" parent="Control/Cards"]
-offset_left = 540.0
-offset_top = 1000.0
-offset_right = 740.0
-offset_bottom = 1200.0
+offset_left = 860.0
+offset_top = 4320.0
+offset_right = 1060.0
+offset_bottom = 4520.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("7_k6xts")
@@ -249,10 +255,10 @@ texture_pressed = ExtResource("7_k6xts")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton5" type="TextureButton" parent="Control/Cards"]
-offset_left = 540.0
-offset_top = 1000.0
-offset_right = 740.0
-offset_bottom = 1200.0
+offset_left = 860.0
+offset_top = 4320.0
+offset_right = 1060.0
+offset_bottom = 4520.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("8_uu76f")
@@ -295,5 +301,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_20dqr")
 }
 
-[connection signal="screen_entered" from="Control/Cards/TextureButton3/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(860, 4320)
+
 [connection signal="animation_finished" from="CardUIAnimationPlayer" to="." method="_on_card_ui_animation_player_animation_finished"]

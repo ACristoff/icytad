@@ -22,12 +22,12 @@ func handle_input(event: InputEvent):
 		start_movement()
 
 func enter(msg: Dictionary = {}) -> void:
-	PLAYER.rotation = Vector3.ZERO
+	PLAYER.rotation_degrees = Vector3.ZERO if PLAYER.team == PLAYER.PlayerTeam.RED else Vector3(0,180,0)
 	%PlayerCamera3D.rotation = Vector3.ZERO
-	print(PLAYER.team)
 	# Reset movement variables when entering this state
 	is_moving = false
 	distance_traveled = 0.0
+	SignalBus.test_prep.emit()
 
 func physics_update(delta: float) -> void:
 	if is_moving:

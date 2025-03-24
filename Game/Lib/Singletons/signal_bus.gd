@@ -11,6 +11,7 @@ signal pause_game
 # Signal that will be triggered when game pauses
 ## Lets use this to test card prep phase really quick
 signal game_state_changed(new_state)
+signal test_prep()
 
 # Signal that will be triggered when dialogue starts
 signal dialogue_triggered(dialogue_data : Dictionary)

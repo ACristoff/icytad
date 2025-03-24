@@ -16,6 +16,7 @@
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("1_mtgcg")
+team = 1
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("player", "projectile_raycast", "bullet_raycast", "debug_raycast", "view_model_container", "cam_3d") instance=ExtResource("2_t1oj7")]
 player = NodePath("..")
