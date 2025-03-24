@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bst2vm2xe6xi4"]
+[gd_scene load_steps=14 format=3 uid="uid://bst2vm2xe6xi4"]
 
 [ext_resource type="Script" uid="uid://dwdkmjoxa6q5l" path="res://Game/UI/Scenes/PrepUI/scripts/card_ui.gd" id="1_4mrkq"]
 [ext_resource type="Shader" uid="uid://boicexik1vxl7" path="res://Game/UI/Scenes/PrepUI/shaders/background_blur.gdshader" id="1_s4n0j"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://tnpwb27f8na3" path="res://1739777577309497.png" id="4_jdep0"]
 [ext_resource type="Texture2D" uid="uid://cm6ftwwr2tac0" path="res://1740458824217374.png" id="6_sfo5v"]
 [ext_resource type="Texture2D" uid="uid://bcvsjvgm2kjii" path="res://tiny_nia.png" id="7_20dqr"]
+[ext_resource type="Texture2D" uid="uid://bg066lqk4lwmp" path="res://tiny_char.png" id="7_k6xts"]
+[ext_resource type="Texture2D" uid="uid://bjmdoc6bb2ot3" path="res://tiny_frog.png" id="8_uu76f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_goxtj"]
 shader = ExtResource("1_s4n0j")
@@ -196,9 +198,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
-offset_left = 472.0
+offset_left = 540.0
 offset_top = 1000.0
-offset_right = 672.0
+offset_right = 740.0
 offset_bottom = 1200.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
@@ -208,9 +210,9 @@ texture_pressed = ExtResource("6_sfo5v")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton2" type="TextureButton" parent="Control"]
-offset_left = 472.0
+offset_left = 540.0
 offset_top = 1000.0
-offset_right = 672.0
+offset_right = 740.0
 offset_bottom = 1200.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
@@ -220,15 +222,39 @@ texture_pressed = ExtResource("4_jdep0")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton3" type="TextureButton" parent="Control"]
-offset_left = 472.0
+offset_left = 540.0
 offset_top = 1000.0
-offset_right = 672.0
+offset_right = 740.0
 offset_bottom = 1200.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("3_jdep0")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton3"]
+rect = Rect2(0, 0, 200, 200)
+
+[node name="TextureButton4" type="TextureButton" parent="Control"]
+offset_left = 540.0
+offset_top = 1000.0
+offset_right = 740.0
+offset_bottom = 1200.0
+toggle_mode = true
+texture_normal = ExtResource("7_20dqr")
+texture_pressed = ExtResource("7_k6xts")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton4"]
+rect = Rect2(0, 0, 200, 200)
+
+[node name="TextureButton5" type="TextureButton" parent="Control"]
+offset_left = 540.0
+offset_top = 1000.0
+offset_right = 740.0
+offset_bottom = 1200.0
+toggle_mode = true
+texture_normal = ExtResource("7_20dqr")
+texture_pressed = ExtResource("8_uu76f")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton5"]
 rect = Rect2(0, 0, 200, 200)
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]

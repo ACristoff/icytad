@@ -16,6 +16,8 @@ func _enter_tween() -> void:
 	# Connecting tween finish signal to function
 	tween.finished.connect(_on_tween_finished.bind(&"enter"))
 	
+	#print(_center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton.size))
+	
 	tween.tween_property($Control/TextureButton, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position1.global_position, $Control/TextureButton.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
@@ -23,6 +25,12 @@ func _enter_tween() -> void:
 	.set_trans(Tween.TRANS_QUINT)
 	
 	tween.tween_property($Control/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton3.size), 0.75)\
+	.set_trans(Tween.TRANS_QUINT)
+	
+	tween.tween_property($Control/TextureButton4, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position4.global_position, $Control/TextureButton3.size), 0.75)\
+	.set_trans(Tween.TRANS_QUINT)
+	
+	tween.tween_property($Control/TextureButton5, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position5.global_position, $Control/TextureButton3.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -41,7 +49,11 @@ func _exist_tween() -> void:
 		
 	tween.tween_property($Control/TextureButton, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 	tween.tween_property($Control/TextureButton2, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	
 	tween.tween_property($Control/TextureButton3, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	
+	tween.tween_property($Control/TextureButton4, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Control/TextureButton5, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 
 func _center_element(target_position : Vector2, element_size : Vector2) -> Vector2:
 	return target_position + Vector2.UP * (element_size.y/2) + Vector2.LEFT * element_size.x/2
