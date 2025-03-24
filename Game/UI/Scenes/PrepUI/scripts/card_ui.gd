@@ -38,24 +38,6 @@ func _enter_tween() -> void:
 		tween.tween_property(target_node, "global_position", target_position, 0.75) \
 		.set_trans(Tween.TRANS_QUINT)
 	
-	#print(_center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton.size))
-	"""
-	tween.tween_property($Control/Cards/TextureButton, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position1.global_position, $Control/Cards/TextureButton.size), 0.75)\
-	.set_trans(Tween.TRANS_QUINT)
-	
-	tween.tween_property($Control/Cards/TextureButton2, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position2.global_position, $Control/Cards/TextureButton2.size), 0.75)\
-	.set_trans(Tween.TRANS_QUINT)
-	
-	tween.tween_property($Control/Cards/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/Cards/TextureButton3.size), 0.75)\
-	.set_trans(Tween.TRANS_QUINT)
-	
-	tween.tween_property($Control/Cards/TextureButton4, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position4.global_position, $Control/Cards/TextureButton3.size), 0.75)\
-	.set_trans(Tween.TRANS_QUINT)
-	
-	tween.tween_property($Control/Cards/TextureButton5, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position5.global_position, $Control/Cards/TextureButton3.size), 0.75)\
-	.set_trans(Tween.TRANS_QUINT)
-	"""
-	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 ## Should be called only once
@@ -69,14 +51,12 @@ func _exist_tween() -> void:
 	var tween : Tween = create_tween()
 	tween.set_parallel()
 	tween.finished.connect(_on_tween_finished.bind(&"exit"))
-		
-	tween.tween_property($Control/Cards/TextureButton, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
-	tween.tween_property($Control/Cards/TextureButton2, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
-	
-	tween.tween_property($Control/Cards/TextureButton3, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
-	
-	tween.tween_property($Control/Cards/TextureButton4, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
-	tween.tween_property($Control/Cards/TextureButton5, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	for key in cards.keys():
+		var position_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[key][0]))
+		if cards[key][2] % 2 != 0:
+			tween.tween_property(cards[key][1], "global_position", Vector2.UP * 5000, 0.75).as_relative().set_trans(Tween.TRANS_QUINT)
+		else:
+			tween.tween_property(cards[key][1], "global_position", Vector2.DOWN * 5000, 0.75).as_relative().set_trans(Tween.TRANS_QUINT)
 
 
 #region Helper Functions
