@@ -207,6 +207,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="Control/Cards"]
+layout_mode = 0
 offset_left = 860.0
 offset_top = 4320.0
 offset_right = 1060.0
@@ -219,6 +220,7 @@ texture_pressed = ExtResource("6_sfo5v")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton2" type="TextureButton" parent="Control/Cards"]
+layout_mode = 0
 offset_left = 860.0
 offset_top = 4320.0
 offset_right = 1060.0
@@ -231,6 +233,7 @@ texture_pressed = ExtResource("4_jdep0")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton3" type="TextureButton" parent="Control/Cards"]
+layout_mode = 0
 offset_left = 860.0
 offset_top = 4320.0
 offset_right = 1060.0
@@ -243,6 +246,7 @@ texture_pressed = ExtResource("3_jdep0")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton4" type="TextureButton" parent="Control/Cards"]
+layout_mode = 0
 offset_left = 860.0
 offset_top = 4320.0
 offset_right = 1060.0
@@ -255,6 +259,7 @@ texture_pressed = ExtResource("7_k6xts")
 rect = Rect2(0, 0, 200, 200)
 
 [node name="TextureButton5" type="TextureButton" parent="Control/Cards"]
+layout_mode = 0
 offset_left = 860.0
 offset_top = 4320.0
 offset_right = 1060.0
@@ -301,7 +306,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_20dqr")
 }
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Spawn" type="Marker2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(860, 4320)
 
 [connection signal="animation_finished" from="CardUIAnimationPlayer" to="." method="_on_card_ui_animation_player_animation_finished"]

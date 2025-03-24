@@ -24,9 +24,11 @@ func _ready() -> void:
 		# Connects signal to on_child_transition function, that will run when the signal is emitted
 		child.mouse_entered.connect(_on_texture_button_mouse_entered.bind(child))
 		child.mouse_exited.connect(_on_texture_button_mouse_exited.bind(child))
-		var notifier : Node = child.get_node("VisibleOnScreenNotifier2D")
-		notifier.screen_entered.connect(_on_screen_entered.bind(child))
-		notifier.screen_exited.connect(_on_screen_exited.bind(child))
+		
+		#var notifier : Node = child.get_node("VisibleOnScreenNotifier2D")
+		#notifier.screen_entered.connect(_on_screen_entered.bind(child))
+		#notifier.screen_exited.connect(_on_screen_exited.bind(child))
+		
 		index = index + 1
 
 ## Should be called only once
@@ -81,16 +83,15 @@ func _on_tween_finished(_message: StringName = &"Empty") -> void:
 	if _message == &"exit":
 		# There are no card tweens playing
 		tween_stopped = true
+		
+		## Reset cards to spawn position
+		#for key in cards.keys():
+		#	cards[key][1].global_position = %Spawn.global_position
+			
 		%CardUIAnimationPlayer.play(&"fade_out")
 	elif _message == &"enter":
 		# There are no card tweens playing
 		tween_stopped = true
-
-func _on_screen_entered(child : Node) -> void:
-	print("on_screen:\t", child)
-	
-func _on_screen_exited(child : Node) -> void:
-	print("off_screen:\t", child)
 	
 func _on_card_ui_animation_player_animation_finished(anim_name: StringName) -> void:
 	# Will move this to state machine later
