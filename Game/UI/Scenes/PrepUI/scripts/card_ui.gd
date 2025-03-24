@@ -6,7 +6,7 @@ extends CanvasLayer
 
 ## move cards into place
 ## Bottom left corner, display cards in play
-var cards : Dictionary[StringName, int] = {}
+var cards : Dictionary[StringName, Array] = {}
 
 ## Set up a script to loop through the tree here and attach a signal listener to each
 func _ready() -> void:
@@ -14,11 +14,14 @@ func _ready() -> void:
 	# Our children will be stuff like idle, walk, jump, fall, etc
 	var index : int = 1
 	for child in %Cards.get_children():
-		cards[child.name] = index
+		## [int, Node, int]
+		## [index, child_node, position]
+		cards[child.name] = [index, child, index]
 		# Connects signal to on_child_transition function, that will run when the signal is emitted
 		child.mouse_entered.connect(_on_texture_button_mouse_entered.bind(child))
 		child.mouse_exited.connect(_on_texture_button_mouse_exited.bind(child))
 		index = index + 1
+	
 
 ## Maybe have the type of cards available play here?
 func _enter_tween() -> void:
@@ -28,8 +31,15 @@ func _enter_tween() -> void:
 	# Connecting tween finish signal to function
 	tween.finished.connect(_on_tween_finished.bind(&"enter"))
 	
-	#print(_center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton.size))
+	for key in cards.keys():
+		var position_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[key][0]))
+		var target_node : Node = cards[key][1]
+		var target_position : Vector2 = _center_element(position_node.global_position, target_node.size)
+		tween.tween_property(target_node, "global_position", target_position, 0.75) \
+		.set_trans(Tween.TRANS_QUINT)
 	
+	#print(_center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton.size))
+	"""
 	tween.tween_property($Control/Cards/TextureButton, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position1.global_position, $Control/Cards/TextureButton.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
@@ -44,6 +54,7 @@ func _enter_tween() -> void:
 	
 	tween.tween_property($Control/Cards/TextureButton5, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position5.global_position, $Control/Cards/TextureButton3.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
+	"""
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -87,18 +98,17 @@ func _on_card_ui_animation_player_animation_finished(anim_name: StringName) -> v
 	if anim_name == &"fade_out":
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 ## We need to pass in the hovered node into this
 func _on_texture_button_mouse_entered(textureButton : Node) -> void:
 	print("Hover")
 	var tween : Tween = create_tween()
-	var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name]))
+	var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name][0]))
 	tween.tween_property(textureButton, "global_position", _center_element(target_node.global_position, textureButton.size) + Vector2.UP * 20, 0.1)
 
 func _on_texture_button_mouse_exited(textureButton : Node) -> void:
 	print("No hover")
 	var tween : Tween = create_tween()
-	var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name]))
+	var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name][0]))
 	tween.tween_property(textureButton, "global_position", _center_element(target_node.global_position, textureButton.size), 0.1)
 
 #endregion

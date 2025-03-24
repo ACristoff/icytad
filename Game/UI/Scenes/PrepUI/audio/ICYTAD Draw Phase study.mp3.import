@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m3gtkdafhajt"
+path="res://.godot/imported/ICYTAD Draw Phase study.mp3-0b8785a9f62a25f7b2d89b00904a8519.mp3str"
+
+[deps]
+
+source_file="res://Game/UI/Scenes/PrepUI/audio/ICYTAD Draw Phase study.mp3"
+dest_files=["res://.godot/imported/ICYTAD Draw Phase study.mp3-0b8785a9f62a25f7b2d89b00904a8519.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
