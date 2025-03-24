@@ -6,10 +6,19 @@ extends CanvasLayer
 
 ## move cards into place
 ## Bottom left corner, display cards in play
+var cards : Dictionary[StringName, int] = {}
 
 ## Set up a script to loop through the tree here and attach a signal listener to each
 func _ready() -> void:
 	%CardUIAnimationPlayer.play(&"fade_in")
+	# Our children will be stuff like idle, walk, jump, fall, etc
+	var index : int = 1
+	for child in %Cards.get_children():
+		cards[child.name] = index
+		# Connects signal to on_child_transition function, that will run when the signal is emitted
+		child.mouse_entered.connect(_on_texture_button_mouse_entered.bind(child))
+		child.mouse_exited.connect(_on_texture_button_mouse_exited.bind(child))
+		index = index + 1
 
 ## Maybe have the type of cards available play here?
 func _enter_tween() -> void:
@@ -21,19 +30,19 @@ func _enter_tween() -> void:
 	
 	#print(_center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton.size))
 	
-	tween.tween_property($Control/TextureButton, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position1.global_position, $Control/TextureButton.size), 0.75)\
+	tween.tween_property($Control/Cards/TextureButton, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position1.global_position, $Control/Cards/TextureButton.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
-	tween.tween_property($Control/TextureButton2, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position2.global_position, $Control/TextureButton2.size), 0.75)\
+	tween.tween_property($Control/Cards/TextureButton2, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position2.global_position, $Control/Cards/TextureButton2.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
-	tween.tween_property($Control/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton3.size), 0.75)\
+	tween.tween_property($Control/Cards/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/Cards/TextureButton3.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
-	tween.tween_property($Control/TextureButton4, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position4.global_position, $Control/TextureButton3.size), 0.75)\
+	tween.tween_property($Control/Cards/TextureButton4, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position4.global_position, $Control/Cards/TextureButton3.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
-	tween.tween_property($Control/TextureButton5, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position5.global_position, $Control/TextureButton3.size), 0.75)\
+	tween.tween_property($Control/Cards/TextureButton5, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position5.global_position, $Control/Cards/TextureButton3.size), 0.75)\
 	.set_trans(Tween.TRANS_QUINT)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -50,13 +59,13 @@ func _exist_tween() -> void:
 	tween.set_parallel()
 	tween.finished.connect(_on_tween_finished.bind(&"exit"))
 		
-	tween.tween_property($Control/TextureButton, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
-	tween.tween_property($Control/TextureButton2, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Control/Cards/TextureButton, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Control/Cards/TextureButton2, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 	
-	tween.tween_property($Control/TextureButton3, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Control/Cards/TextureButton3, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 	
-	tween.tween_property($Control/TextureButton4, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
-	tween.tween_property($Control/TextureButton5, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Control/Cards/TextureButton4, "global_position", Vector2.DOWN * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Control/Cards/TextureButton5, "global_position", Vector2.UP * 5000, .75).as_relative().set_trans(Tween.TRANS_QUINT)
 
 
 #region Helper Functions
@@ -80,14 +89,16 @@ func _on_card_ui_animation_player_animation_finished(anim_name: StringName) -> v
 
 
 ## We need to pass in the hovered node into this
-func _on_texture_button_3_mouse_entered() -> void:
+func _on_texture_button_mouse_entered(textureButton : Node) -> void:
 	print("Hover")
 	var tween : Tween = create_tween()
-	tween.tween_property($Control/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton3.size) + Vector2.UP * 20, 0.1)
+	var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name]))
+	tween.tween_property(textureButton, "global_position", _center_element(target_node.global_position, textureButton.size) + Vector2.UP * 20, 0.1)
 
-func _on_texture_button_3_mouse_exited() -> void:
+func _on_texture_button_mouse_exited(textureButton : Node) -> void:
 	print("No hover")
 	var tween : Tween = create_tween()
-	tween.tween_property($Control/TextureButton3, "global_position", _center_element($Control/CenterContainer/CardPositionHbox/Position3.global_position, $Control/TextureButton3.size), 0.1)
+	var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name]))
+	tween.tween_property(textureButton, "global_position", _center_element(target_node.global_position, textureButton.size), 0.1)
 
 #endregion

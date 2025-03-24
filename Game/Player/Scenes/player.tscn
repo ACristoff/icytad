@@ -91,4 +91,3 @@ script = ExtResource("4_t1oj7")
 script = ExtResource("6_tp56d")
 
 [node name="CardUI" parent="." instance=ExtResource("7_rj56h")]
-visible = false

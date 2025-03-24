@@ -197,7 +197,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TextureButton" type="TextureButton" parent="Control"]
+[node name="Cards" type="Node" parent="Control"]
+unique_name_in_owner = true
+
+[node name="TextureButton" type="TextureButton" parent="Control/Cards"]
 offset_left = 540.0
 offset_top = 1000.0
 offset_right = 740.0
@@ -206,10 +209,10 @@ toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("6_sfo5v")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/Cards/TextureButton"]
 rect = Rect2(0, 0, 200, 200)
 
-[node name="TextureButton2" type="TextureButton" parent="Control"]
+[node name="TextureButton2" type="TextureButton" parent="Control/Cards"]
 offset_left = 540.0
 offset_top = 1000.0
 offset_right = 740.0
@@ -218,10 +221,10 @@ toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("4_jdep0")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton2"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/Cards/TextureButton2"]
 rect = Rect2(0, 0, 200, 200)
 
-[node name="TextureButton3" type="TextureButton" parent="Control"]
+[node name="TextureButton3" type="TextureButton" parent="Control/Cards"]
 offset_left = 540.0
 offset_top = 1000.0
 offset_right = 740.0
@@ -229,12 +232,11 @@ offset_bottom = 1200.0
 toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("3_jdep0")
-texture_hover = ExtResource("4_jdep0")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton3"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/Cards/TextureButton3"]
 rect = Rect2(0, 0, 200, 200)
 
-[node name="TextureButton4" type="TextureButton" parent="Control"]
+[node name="TextureButton4" type="TextureButton" parent="Control/Cards"]
 offset_left = 540.0
 offset_top = 1000.0
 offset_right = 740.0
@@ -243,10 +245,10 @@ toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("7_k6xts")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton4"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/Cards/TextureButton4"]
 rect = Rect2(0, 0, 200, 200)
 
-[node name="TextureButton5" type="TextureButton" parent="Control"]
+[node name="TextureButton5" type="TextureButton" parent="Control/Cards"]
 offset_left = 540.0
 offset_top = 1000.0
 offset_right = 740.0
@@ -255,7 +257,7 @@ toggle_mode = true
 texture_normal = ExtResource("7_20dqr")
 texture_pressed = ExtResource("8_uu76f")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/TextureButton5"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Control/Cards/TextureButton5"]
 rect = Rect2(0, 0, 200, 200)
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
@@ -293,7 +295,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_20dqr")
 }
 
-[connection signal="mouse_entered" from="Control/TextureButton3" to="." method="_on_texture_button_3_mouse_entered"]
-[connection signal="mouse_exited" from="Control/TextureButton3" to="." method="_on_texture_button_3_mouse_exited"]
-[connection signal="screen_entered" from="Control/TextureButton3/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_entered" from="Control/Cards/TextureButton3/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="animation_finished" from="CardUIAnimationPlayer" to="." method="_on_card_ui_animation_player_animation_finished"]
