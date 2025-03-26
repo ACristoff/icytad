@@ -47,6 +47,9 @@ var invert_mouse : int = 1
 
 # Movement State
 var is_crouched : bool = false
+
+## The actions the player will take. Populated in the card UI scene
+var action_stack : Array = []
 #endregion
 
 #region Onready Variables

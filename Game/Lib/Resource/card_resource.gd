@@ -1,4 +1,5 @@
 class_name CardResource extends Resource
+## Make a quick flick card or something
 
 @export var name : String
 @export var description : String

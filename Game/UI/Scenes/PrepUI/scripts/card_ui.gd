@@ -5,11 +5,17 @@ extends CanvasLayer
 ## Steps: Fade in blur + background, place cards, click to highlight cards
 ## Use a button and a texture. Button same dimensions as texture, move texture up and down instead
 
+## NOTE: Action Stack
+## NOTE: 3 cards selected max, maybe increase actions per round
+
 ## move cards into place
 ## Bottom left corner, display cards in play
 var cards : Dictionary[StringName, Array] = {}
-
 var tween_stopped : bool = false
+
+var max_card_selections : int = 3
+
+var card_selection_state : Dictionary[Node, bool] = {}
 
 ## Set up a script to loop through the tree here and attach a signal listener to each
 func _ready() -> void:
@@ -24,12 +30,21 @@ func _ready() -> void:
 		# Connects signal to on_child_transition function, that will run when the signal is emitted
 		child.mouse_entered.connect(_on_texture_button_mouse_entered.bind(child))
 		child.mouse_exited.connect(_on_texture_button_mouse_exited.bind(child))
+		child.toggled.connect(_on_texture_button_toggled.bind(child))
 		
 		#var notifier : Node = child.get_node("VisibleOnScreenNotifier2D")
 		#notifier.screen_entered.connect(_on_screen_entered.bind(child))
 		#notifier.screen_exited.connect(_on_screen_exited.bind(child))
 		
 		index = index + 1
+	
+	# Debug
+	SignalBus.test_prep.emit()
+
+
+
+func _physics_process(delta: float) -> void:
+	pass
 
 ## Should be called only once
 func _unhandled_input(event: InputEvent) -> void:
@@ -75,6 +90,16 @@ func _exist_tween() -> void:
 #region Helper Functions
 func _center_element(target_position : Vector2, element_size : Vector2) -> Vector2:
 	return target_position + Vector2.UP * (element_size.y/2) + Vector2.LEFT * element_size.x/2
+	
+
+func _disable_unselected_cards() -> void:
+	for card in %Cards.get_children():
+		if card not in owner.action_stack:
+			card.disabled = true
+			
+func _enable_unselected_cards() -> void:
+	for card in %Cards.get_children():
+		card.disabled = false
 #endregion
 
 
@@ -112,5 +137,20 @@ func _on_texture_button_mouse_exited(textureButton : Node) -> void:
 		var tween : Tween = create_tween()
 		var target_node : Node = get_node("Control/CenterContainer/CardPositionHbox/Position" + str(cards[textureButton.name][0]))
 		tween.tween_property(textureButton, "global_position", _center_element(target_node.global_position, textureButton.size), 0.1)
+		
+func _on_texture_button_toggled(toggled: bool, selectedCard : Node) -> void:
+	#card_selection_state[selectedCard] = toggled
+	
+	if toggled:
+		owner.action_stack.append(selectedCard)
+		if owner.action_stack.size() >= max_card_selections:
+			_disable_unselected_cards()
+	else:
+		owner.action_stack.erase(selectedCard)
+		if owner.action_stack.size() < max_card_selections:
+			_enable_unselected_cards()
+		
+	print(owner.action_stack)
+	print(selectedCard in owner.action_stack)
 
 #endregion
