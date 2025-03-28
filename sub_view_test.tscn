@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgtwjy4vjggnj"]
+
+[ext_resource type="Script" uid="uid://b352isa1m15m8" path="res://directional_light_3d.gd" id="1_p0mvg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_a048m"]
+rings = 7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0mvg"]
+albedo_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="SubViewport" type="SubViewportContainer"]
+light_mask = 32
+visibility_layer = 32
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918752
+size = Vector2i(400, 400)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.28394)
+layers = 32
+mesh = SubResource("SphereMesh_a048m")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_p0mvg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" node_paths=PackedStringArray("target")]
+transform = Transform3D(-0.133654, 0, -0.991028, 0, 1, 0, 0.991028, 0, -0.133654, -4.95514, 0, -1.95221)
+layers = 32
+light_color = Color(0.486275, 0.67451, 0.67451, 1)
+light_cull_mask = 4293918752
+script = ExtResource("1_p0mvg")
+target = NodePath("../MeshInstance3D")
+orbit_speed = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.13311)
+cull_mask = 32

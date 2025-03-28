@@ -36,9 +36,7 @@ func _ready() -> void:
 		index = index + 1
 	
 	# Debug
-	SignalBus.test_prep.emit()
-
-
+	#SignalBus.test_prep.emit()
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -52,7 +50,7 @@ func _on_start_dealing() -> void:
 	%CardUIAnimationPlayer.play(&"fade_in")
 
 ## Maybe have the type of cards available play here?
-## enable them all, on exit
+## enable them all, on entry
 func _enter_tween() -> void:
 	tween_stopped = false
 	var tween : Tween = create_tween()
@@ -123,6 +121,10 @@ func _enable_or_disable_all_cards(selection : bool) -> void:
 	else:
 		for card in %Cards.get_children():
 			card.disabled = true
+	
+	
+func _depopulate_action_stack_visual() -> void:
+	pass
 #endregion
 
 
@@ -171,15 +173,18 @@ func _on_texture_button_mouse_exited(textureButton : Node) -> void:
 			tween.tween_property(textureButton, "global_position", _center_element(target_node.global_position, textureButton.size), 0.1)
 
 # Populating action stack here
+var action_index : int = 0
 func _on_texture_button_toggled(toggled: bool, selectedCard : Node) -> void:
 	# When we toggle a card
 	if toggled:
 		# Add it to the stack
 		owner.action_stack.append(selectedCard)
+		%ActionContainer.get_child(action_index).texture = selectedCard.texture_pressed
 		# If we have too many
 		if owner.action_stack.size() >= max_card_selections:
 			_disable_unselected_cards()
 			
+		action_index = action_index + 1
 	# Remove selected card from action stack
 	else:
 		owner.action_stack.erase(selectedCard)

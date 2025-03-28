@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgxqnfvlavcjr"]
+[gd_scene load_steps=11 format=3 uid="uid://dgxqnfvlavcjr"]
 
 [ext_resource type="Script" uid="uid://bqlneojn8sre2" path="res://Game/Player/player_controller.gd" id="1_mtgcg"]
 [ext_resource type="Script" uid="uid://dhroe2unon03c" path="res://Game/Player/PlayerStaterMachine/utility/player_state_machine.gd" id="2_qrobf"]
 [ext_resource type="PackedScene" uid="uid://rgaepi8i0rgu" path="res://Game/Lib/WeaponManger/lib/scenes/weapon_manager.tscn" id="2_t1oj7"]
+[ext_resource type="PackedScene" uid="uid://bgtwjy4vjggnj" path="res://sub_view_test.tscn" id="3_br030"]
 [ext_resource type="Script" uid="uid://cg1eblpxhj4se" path="res://Game/Player/PlayerStaterMachine/states/airborne_player_state.gd" id="4_hplq1"]
 [ext_resource type="Script" uid="uid://dwox2d2w3w1fu" path="res://Game/Player/PlayerStaterMachine/states/grounded_player_state.gd" id="4_t1oj7"]
 [ext_resource type="Script" uid="uid://cutjsttcrwyw5" path="res://Game/Player/PlayerStaterMachine/states/preparation_player_state.gd" id="6_tp56d"]
@@ -52,6 +53,7 @@ unique_name_in_owner = true
 [node name="PlayerCamera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+cull_mask = 1048543
 fov = 105.0
 
 [node name="BulletRayCast" type="RayCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/CameraRecoil/PlayerCamera3D"]
@@ -92,3 +94,5 @@ script = ExtResource("4_t1oj7")
 script = ExtResource("6_tp56d")
 
 [node name="CardUI" parent="." instance=ExtResource("7_rj56h")]
+
+[node name="SubViewport" parent="." instance=ExtResource("3_br030")]
