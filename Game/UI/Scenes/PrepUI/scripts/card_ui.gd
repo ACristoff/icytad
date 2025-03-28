@@ -174,20 +174,37 @@ func _on_texture_button_mouse_exited(textureButton : Node) -> void:
 
 # Populating action stack here
 var action_index : int = 0
+#var selected_in
 func _on_texture_button_toggled(toggled: bool, selectedCard : Node) -> void:
 	# When we toggle a card
 	if toggled:
 		# Add it to the stack
 		owner.action_stack.append(selectedCard)
-		%ActionContainer.get_child(action_index).texture = selectedCard.texture_pressed
+		
+		var childAction := %ActionContainer.get_child(action_index)
+		childAction.texture = selectedCard.texture_pressed
+		
 		# If we have too many
 		if owner.action_stack.size() >= max_card_selections:
 			_disable_unselected_cards()
 			
 		action_index = action_index + 1
+		
 	# Remove selected card from action stack
 	else:
+		action_index = action_index - 1
+		
+		# Remove selected card from stack
 		owner.action_stack.erase(selectedCard)
+		# Reset all action container textures
+		for i in range(%ActionContainer.get_child_count()):
+			%ActionContainer.get_child(i).texture = null
+			
+		# Repopulate action container in order
+		for j in range(min(owner.action_stack.size(), max_card_selections)):
+			var childAction = %ActionContainer.get_child(j)
+			childAction.texture = owner.action_stack[j].texture_pressed
+		
 		# Enable all cards
 		if owner.action_stack.size() < max_card_selections:
 			_enable_or_disable_all_cards(true)

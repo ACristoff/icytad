@@ -6,3 +6,5 @@ class_name CardResource extends Resource
 
 ## Third person perspective or when weapon is on ground
 @export var world_model: PackedScene
+
+var ui_position : TextureButton
