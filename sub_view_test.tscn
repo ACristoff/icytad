@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgtwjy4vjggnj"]
+[gd_scene load_steps=5 format=3 uid="uid://bgtwjy4vjggnj"]
 
+[ext_resource type="Shader" uid="uid://cct06dvqk4q7j" path="res://test_bulge.gdshader" id="1_0ufa4"]
 [ext_resource type="Script" uid="uid://b352isa1m15m8" path="res://directional_light_3d.gd" id="1_p0mvg"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_a048m"]
-rings = 7
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0mvg"]
-albedo_color = Color(0.255659, 0.255659, 0.255659, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkl32"]
+render_priority = 0
+shader = ExtResource("1_0ufa4")
+shader_parameter/wave_width = 0.1
+shader_parameter/wave_amplitude = 0.064
+shader_parameter/wave_speed = 1.0
 
 [node name="SubViewport" type="SubViewportContainer"]
 light_mask = 32
@@ -14,6 +18,8 @@ visibility_layer = 32
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1408.0
+offset_bottom = -568.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -21,7 +27,6 @@ grow_vertical = 2
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4293918752
-size = Vector2i(400, 400)
 render_target_update_mode = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
@@ -29,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.28394)
 layers = 32
 mesh = SubResource("SphereMesh_a048m")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_p0mvg")
+surface_material_override/0 = SubResource("ShaderMaterial_fkl32")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" node_paths=PackedStringArray("target")]
 transform = Transform3D(-0.133654, 0, -0.991028, 0, 1, 0, 0.991028, 0, -0.133654, -4.95514, 0, -1.95221)
